@@ -3,7 +3,7 @@ FROM jupyter/datascience-notebook
 USER root
 
 RUN chgrp -R root /home/$NB_USER \
-    && find /home/$NB_USER -type d -exec chmod g+rws {} \; \
+    && find /home/$NB_USER -type d -exec chmod g+rwx,o+rx {} \; \
     && find /home/$NB_USER -type f -exec chmod g+rw {} \;
 
 ENV HOME /home/$NB_USER
