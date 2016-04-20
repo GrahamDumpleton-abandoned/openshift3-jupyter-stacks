@@ -2,8 +2,8 @@ FROM jupyter/minimal-notebook
 
 USER root
 
-RUN chmod -Rf g+w /home/$NB_USER
+RUN chgrp -R root /home/$NB_USER && chmod -Rf g+w /home/$NB_USER
 
 ENV HOME /home/$NB_USER
 
-USER 1001:100
+USER 1001
