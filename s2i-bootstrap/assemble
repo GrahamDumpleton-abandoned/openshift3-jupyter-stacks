@@ -2,7 +2,9 @@
 
 set -x
 
-set -eo pipefail
+echo $SHELL
+
+#set -eo pipefail
 
 cp -Rf /tmp/src/. /home/$NB_USER/work
 
