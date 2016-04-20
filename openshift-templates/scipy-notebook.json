@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jupyter-scipy-notebook-app",
+        "name": "scipy-notebook-app",
         "annotations": {
             "description": "Jupyter (scipy-notebook).",
             "iconClass": "instant-app",
@@ -49,7 +49,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "jupyter-scipy-notebook-image:latest"
+                            "name": "scipy-notebook-img:latest"
                         }
                     }
                 },

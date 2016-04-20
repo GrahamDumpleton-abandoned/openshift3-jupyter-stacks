@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jupyter-datascience-notebook-app",
+        "name": "datascience-notebook-app",
         "annotations": {
             "description": "Jupyter (datascience-notebook).",
             "iconClass": "instant-app",
@@ -49,7 +49,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "jupyter-datascience-notebook-image:latest"
+                            "name": "datascience-notebook-img:latest"
                         }
                     }
                 },

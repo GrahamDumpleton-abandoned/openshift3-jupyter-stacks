@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jupyter-r-notebook-app",
+        "name": "r-notebook-app",
         "annotations": {
             "description": "Jupyter (r-notebook).",
             "iconClass": "instant-app",
@@ -49,7 +49,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "jupyter-r-notebook-image:latest"
+                            "name": "r-notebook-img:latest"
                         }
                     }
                 },

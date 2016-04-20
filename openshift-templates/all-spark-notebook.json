@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jupyter-all-spark-notebook-app",
+        "name": "all-spark-notebook-app",
         "annotations": {
             "description": "Jupyter (all-spark-notebook).",
             "iconClass": "instant-app",
@@ -49,7 +49,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "jupyter-all-spark-notebook-image:latest"
+                            "name": "all-spark-notebook-img:latest"
                         }
                     }
                 },

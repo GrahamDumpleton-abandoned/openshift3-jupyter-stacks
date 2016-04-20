@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jupyter-minimal-notebook-app",
+        "name": "minimal-notebook-app",
         "annotations": {
             "description": "Jupyter (minimal-notebook).",
             "iconClass": "instant-app",
@@ -49,7 +49,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "jupyter-minimal-notebook-image:latest"
+                            "name": "minimal-notebook-img:latest"
                         }
                     }
                 },

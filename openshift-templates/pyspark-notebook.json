@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jupyter-pyspark-notebook-app",
+        "name": "pyspark-notebook-app",
         "annotations": {
             "description": "Jupyter (pyspark-notebook).",
             "iconClass": "instant-app",
@@ -49,7 +49,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "jupyter-pyspark-notebook-image:latest"
+                            "name": "pyspark-notebook-img:latest"
                         }
                     }
                 },
