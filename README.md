@@ -40,7 +40,7 @@ The list of Jupyter images for which fixed up variants are provided for are:
 
 Select which image you require for the work you need to do. Then run the OpenShift command line tool command ``oc new-build`` with this repository, the context directory set to the image name, and an output image name.
 
-It is important to the output image names listed so they match the application templates and don't clash with the name or the original Jupyter image.
+It is important to the output image names listed so they match the application templates and don't clash with the name of the original Jupyter image.
 
 The commands to build each of the following would therefore be as follows:
 
@@ -161,7 +161,7 @@ NAME                   DESCRIPTION                   PARAMETERS    OBJECTS
 minimal-notebook-app   Jupyter (minimal-notebook).   4 (3 blank)   5
 ```
 
-You can use the parameters using the ``oc describe`` command.
+You can see the parameters using the ``oc describe`` command.
 
 ```
 $ oc describe template minimal-notebook-app
