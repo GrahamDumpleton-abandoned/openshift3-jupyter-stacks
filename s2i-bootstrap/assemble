@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -x
 
@@ -11,3 +11,5 @@ cp -Rf /tmp/src/. /home/$NB_USER/work
 rm -rf /tmp/src
 
 chmod -Rf g+w /home/$NB_USER/work || true
+
+echo "ALL DONE"
