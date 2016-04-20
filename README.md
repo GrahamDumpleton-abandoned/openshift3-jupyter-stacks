@@ -47,37 +47,37 @@ The commands to build each of the following would therefore be as follows:
 **all-spark-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-all-spark-notebook-image --context-dir=all-spark-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name all-spark-notebook-img --context-dir=all-spark-notebook
 ```
 
 **datascience-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-datascience-notebook-image --context-dir=datascience-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name datascience-notebook-img --context-dir=datascience-notebook
 ```
 
 **minimal-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-minimal-notebook-image --context-dir=minimal-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name minimal-notebook-img --context-dir=minimal-notebook
 ```
 
 **pyspark-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-pyspark-notebook-image --context-dir=pyspark-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name pyspark-notebook-img --context-dir=pyspark-notebook
 ```
 
 **r-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-r-notebook-image --context-dir=r-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name r-notebook-img --context-dir=r-notebook
 ```
 
 **scipy-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-scipy-notebook-image --context-dir=scipy-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name scipy-notebook-img --context-dir=scipy-notebook
 ```
 
 ## Using the Images
@@ -85,7 +85,7 @@ oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --
 If you only need an empty Jupyter Notebook instance and will upload any notebooks manually, you can deploy the image directly. If for example needing the ``minimal-notebook``, you would run:
 
 ```
-oc new-app jupyter-minimal-notebook-image --name my-notebook
+oc new-app minimal-notebook-img --name my-notebook
 oc expose service my-notebook
 ```
 
@@ -94,14 +94,14 @@ By default the service will be exposed via HTTP and will not be password protect
 To enable a password, instead of the commands above, instead use:
 
 ```
-oc new-app jupyter-minimal-notebook-image --name my-notebook --env PASSWORD=mypassword
+oc new-app minimal-notebook-img --name my-notebook --env PASSWORD=mypassword
 oc expose service my-notebook
 ```
 
 To have a set of notebooks and other data files combined with the image and deployed in one step, run the image as an S2I builder. That is, image name followed by ``~`` and the Git repository URL containing the notebooks.
 
 ```
-oc new-app jupyter-minimal-notebook-image~https://github.com/jrjohansson/scientific-python-lectures.git --name my-notebook
+oc new-app minimal-notebook-img~https://github.com/jrjohansson/scientific-python-lectures.git --name my-notebook
 oc expose service my-notebook
 ```
 
@@ -157,15 +157,15 @@ To use the templates from the command line, determine the names using ``oc get t
 
 ```
 $ oc get templates
-NAME                       DESCRIPTION                   PARAMETERS    OBJECTS
-jupyter-minimal-notebook-app   Jupyter (minimal-notebook).   4 (3 blank)   5
+NAME                   DESCRIPTION                   PARAMETERS    OBJECTS
+minimal-notebook-app   Jupyter (minimal-notebook).   4 (3 blank)   5
 ```
 
 You can use the parameters using the ``oc describe`` command.
 
 ```
-$ oc describe template jupyter-minimal-notebook-app
-Name:		jupyter-minimal-notebook-app
+$ oc describe template minimal-notebook-app
+Name:		minimal-notebook-app
 Created:	15 minutes ago
 Labels:		<none>
 Description:	Jupyter (minimal-notebook).
@@ -209,8 +209,8 @@ Objects:
 The ``oc new-app`` command can then be used to create and instance of the Jupyter Notebook for that image.
 
 ```
-$ oc new-app jupyter-minimal-notebook-app --param APPLICATION_NAME=my-notebook --param REPOSITORY_URL=https://github.com/jrjohansson/scientific-python-lectures.git
---> Deploying template jupyter-minimal-notebook-app for "jupyter-minimal-notebook-app"
+$ oc new-app minimal-notebook-app --param APPLICATION_NAME=my-notebook --param REPOSITORY_URL=https://github.com/jrjohansson/scientific-python-lectures.git
+--> Deploying template minimal-notebook-app for "minimal-notebook-app"
      With parameters:
       Name=my-notebook
       Git Repository URL=https://github.com/jrjohansson/scientific-python-lectures.git
