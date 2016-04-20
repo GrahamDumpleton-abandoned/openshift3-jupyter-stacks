@@ -6,7 +6,7 @@ The Jupyter Docker images do already run as a non ``root`` user, however how tha
 
 The problems with the Jupyter images are as follows:
 
-1. Jupyter images set ``USER`` to a named used rather than an integer UID. This means that the hosting service cannot actually properly verify that the user the container runs as, will not actually be running as ``root``. This is because an image could have added the named user but given it the ``root`` UID of ``0``. It would not be possible to detect this from looking at the Docker image meta data. In a secured Docker environment, ``USER`` of any images should always use an integer UID.
+1. Jupyter images set ``USER`` to a named used rather than an integer UID. This means that the hosting service cannot properly verify that the user the container runs as, will not actually be running as ``root``. This is because an image could have added the named user but given it the ``root`` UID of ``0``. It would not be possible to detect this from looking at the Docker image meta data. In a secured Docker environment, ``USER`` of any images should always use an integer UID.
 2. Jupyter images will not run if the hosting environment overrides the UID that the container run as to a value different to that specified by the ``USER``. This is because directories/files have ownership and permissions which prohibit the assigned user from reading or writing to them. To work in such an environment, all directories/files created should have ownership of the GID for the ``root`` group, this being the default GID used by Docker when containers are run. The ``HOME`` environment variable should also be set explicitly to deal with the case that the assigned UID when run does not have a corresponding UNIX account.
 
 Although substitute images are provided here, this is seen as an interim measure. Ideally the original Jupyter images can be modified to work correctly.
@@ -23,7 +23,7 @@ The Docker build files provided are a small shim on top of the official Jupyter 
 6. Ensure that files under ``/opt/conda`` are readable/writable to the ``root`` group.
 7. Set the ``HOME`` environment variable to ``/home/jovyan``.
 
-In addition to these fixes to the Jupyter stack images, the new derived image also sets image labels to enable the images to be used as [Source to Image](https://github.com/openshift/source-to-image) (S2I) builders. Such builders can be used in conjunction with the ``s2i`` tool to build Docker images which combine the base images with files from a Git repository, without a user need to know how to write ``Dockerfile`` themselves. This makes it very easy to bundle up a base image with a set of notebook into an image for distribution or deployment, such as in a teaching environment. The S2I function also works with OpenShift 3, enabling one click deployment of Jupyter images along with any required notebooks.
+In addition to these fixes to the Jupyter stack images, the new derived image also sets image labels to enable the images to be used as [Source to Image](https://github.com/openshift/source-to-image) (S2I) builders. Such builders can be used in conjunction with the ``s2i`` tool to build Docker images which combine the base images with files from a Git repository, without a user needing to know how to write a ``Dockerfile`` themselves. This makes it very easy to bundle up a base image with a set of notebooks into an image for distribution or deployment, such as in a teaching environment. The S2I function also works with OpenShift 3, enabling one click deployment of Jupyter images along with any required notebooks.
 
 ## Images Available
 
@@ -40,44 +40,44 @@ The list of Jupyter images for which fixed up variants are provided for are:
 
 Select which image you require for the work you need to do. Then run the OpenShift command line tool command ``oc new-build`` with this repository, the context directory set to the image name, and an output image name.
 
-It is important to prefix the output image name with ``jupyter-`` else the name will clash with the Jupyter stack pulled down as the base image.
+It is important to the output image names listed so they match the application templates and don't clash with the name or the original Jupyter image.
 
 The commands to build each of the following would therefore be as follows:
 
 **all-spark-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-all-spark-notebook --context-dir=all-spark-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-all-spark-notebook-image --context-dir=all-spark-notebook
 ```
 
 **datascience-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-datascience-notebook --context-dir=datascience-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-datascience-notebook-image --context-dir=datascience-notebook
 ```
 
 **minimal-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-minimal-notebook --context-dir=minimal-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-minimal-notebook-image --context-dir=minimal-notebook
 ```
 
 **pyspark-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-pyspark-notebook --context-dir=pyspark-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-pyspark-notebook-image --context-dir=pyspark-notebook
 ```
 
 **r-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-r-notebook --context-dir=r-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-r-notebook-image --context-dir=r-notebook
 ```
 
 **scipy-notebook**
 
 ```
-oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-scipy-notebook --context-dir=scipy-notebook
+oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --name jupyter-scipy-notebook-image --context-dir=scipy-notebook
 ```
 
 ## Using the Images
@@ -85,7 +85,7 @@ oc new-build https://github.com/GrahamDumpleton/openshift3-jupyter-stacks.git --
 If you only need an empty Jupyter Notebook instance and will upload any notebooks manually, you can deploy the image directly. If for example needing the ``minimal-notebook``, you would run:
 
 ```
-oc new-app jupyter-minimal-notebook --name my-notebook
+oc new-app jupyter-minimal-notebook-image --name my-notebook
 oc expose service my-notebook
 ```
 
@@ -94,14 +94,14 @@ By default the service will be exposed via HTTP and will not be password protect
 To enable a password, instead of the commands above, instead use:
 
 ```
-oc new-app jupyter-minimal-notebook --name my-notebook --env PASSWORD=mypassword
+oc new-app jupyter-minimal-notebook-image --name my-notebook --env PASSWORD=mypassword
 oc expose service my-notebook
 ```
 
 To have a set of notebooks and other data files combined with the image and deployed in one step, run the image as an S2I builder. That is, image name followed by ``~`` and the Git repository URL containing the notebooks.
 
 ```
-oc new-app jupyter-minimal-notebook~https://github.com/jrjohansson/scientific-python-lectures.git --name my-notebook
+oc new-app jupyter-minimal-notebook-image~https://github.com/jrjohansson/scientific-python-lectures.git --name my-notebook
 oc expose service my-notebook
 ```
 
@@ -158,14 +158,14 @@ To use the templates from the command line, determine the names using ``oc get t
 ```
 $ oc get templates
 NAME                       DESCRIPTION                   PARAMETERS    OBJECTS
-jupyter-minimal-notebook   Jupyter (minimal-notebook).   4 (3 blank)   5
+jupyter-minimal-notebook-app   Jupyter (minimal-notebook).   4 (3 blank)   5
 ```
 
 You can use the parameters using the ``oc describe`` command.
 
 ```
-$ oc describe template jupyter-minimal-notebook
-Name:		jupyter-minimal-notebook
+$ oc describe template jupyter-minimal-notebook-app
+Name:		jupyter-minimal-notebook-app
 Created:	15 minutes ago
 Labels:		<none>
 Description:	Jupyter (minimal-notebook).

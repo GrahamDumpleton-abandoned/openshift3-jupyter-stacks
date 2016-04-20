@@ -49,7 +49,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "jupyter-minimal-notebook:latest"
+                            "name": "jupyter-minimal-notebook-image:latest"
                         }
                     }
                 },

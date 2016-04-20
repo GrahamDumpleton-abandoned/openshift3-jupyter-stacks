@@ -49,7 +49,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "jupyter-datascience-notebook:latest"
+                            "name": "jupyter-datascience-notebook-image:latest"
                         }
                     }
                 },

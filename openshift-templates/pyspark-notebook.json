@@ -49,7 +49,7 @@
                     "sourceStrategy": {
                         "from": {
                             "kind": "ImageStreamTag",
-                            "name": "jupyter-pyspark-notebook:latest"
+                            "name": "jupyter-pyspark-notebook-image:latest"
                         }
                     }
                 },
