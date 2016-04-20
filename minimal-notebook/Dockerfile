@@ -1,3 +1,8 @@
 FROM jupyter/minimal-notebook
 
-USER 1000
+USER root
+
+RUN chmod -Rf g+w /home/$NB_USER
+
+USER 1001
+GROUP users
