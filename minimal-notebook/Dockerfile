@@ -12,4 +12,4 @@ LABEL io.k8s.description="S2I builder Jupyter (minimal-notebook)." \
       io.k8s.display-name="Jupyter (minimal-notebook)" \
       io.openshift.expose-services="8888:http" \
       io.openshift.tags="builder,python,jupyter" \
-      io.openshift.s2i.scripts-url="image:///usr/local/s2i/bin"
+      io.openshift.s2i.scripts-url="https://raw.githubusercontent.com/GrahamDumpleton/openshift3-jupyter-stacks/master/s2i-bootstrap"
