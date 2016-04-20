@@ -4,7 +4,10 @@ USER root
 
 RUN chgrp -R root /home/$NB_USER \
     && find /home/$NB_USER -type d -exec chmod g+rwx,o+rx {} \; \
-    && find /home/$NB_USER -type f -exec chmod g+rw {} \;
+    && find /home/$NB_USER -type f -exec chmod g+rw {} \; \
+    && chgrp -R root /opt/conda \
+    && find /opt/conda -type d -exec chmod g+rwx,o+rx {} \; \
+    && find /opt/conda -type f -exec chmod g+rw {} \;
 
 ENV HOME /home/$NB_USER
 
