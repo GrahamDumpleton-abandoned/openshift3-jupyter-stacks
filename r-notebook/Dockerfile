@@ -8,7 +8,7 @@ ENV HOME /home/$NB_USER
 
 USER 1001
 
-LABEL io.k8s.description="S2I builder Jupyter (r-notebook)." \
+LABEL io.k8s.description="S2I builder for Jupyter (r-notebook)." \
       io.k8s.display-name="Jupyter (r-notebook)" \
       io.openshift.expose-services="8888:http" \
       io.openshift.tags="builder,r,jupyter" \
