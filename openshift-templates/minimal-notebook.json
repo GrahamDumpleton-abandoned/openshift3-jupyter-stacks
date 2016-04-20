@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jupyter-minimal-notebook",
+        "name": "jupyter-minimal-notebook-app",
         "annotations": {
             "description": "Jupyter (minimal-notebook).",
             "iconClass": "instant-app",

@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jupyter-datascience-notebook",
+        "name": "jupyter-datascience-notebook-app",
         "annotations": {
             "description": "Jupyter (datascience-notebook).",
             "iconClass": "instant-app",

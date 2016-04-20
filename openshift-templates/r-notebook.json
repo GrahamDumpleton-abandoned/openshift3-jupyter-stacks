@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jupyter-r-notebook",
+        "name": "jupyter-r-notebook-app",
         "annotations": {
             "description": "Jupyter (r-notebook).",
             "iconClass": "instant-app",

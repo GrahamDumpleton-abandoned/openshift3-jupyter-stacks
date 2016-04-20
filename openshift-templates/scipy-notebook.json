@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jupyter-scipy-notebook",
+        "name": "jupyter-scipy-notebook-app",
         "annotations": {
             "description": "Jupyter (scipy-notebook).",
             "iconClass": "instant-app",

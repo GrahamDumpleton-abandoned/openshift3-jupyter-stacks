@@ -2,7 +2,7 @@
     "kind": "Template",
     "apiVersion": "v1",
     "metadata": {
-        "name": "jupyter-all-spark-notebook",
+        "name": "jupyter-all-spark-notebook-app",
         "annotations": {
             "description": "Jupyter (all-spark-notebook).",
             "iconClass": "instant-app",
