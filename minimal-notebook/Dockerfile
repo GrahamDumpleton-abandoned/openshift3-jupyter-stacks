@@ -2,7 +2,9 @@ FROM jupyter/minimal-notebook
 
 USER root
 
-RUN chgrp -R root /home/$NB_USER && chmod -Rf g+w /home/$NB_USER
+RUN chgrp -R root /home/$NB_USER \
+    && find /home/$NB_USER -type d -exec chmod g+rws {} \; \
+    && find /home/$NB_USER -type f -exec chmod g+rw {} \;
 
 ENV HOME /home/$NB_USER
 
