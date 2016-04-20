@@ -6,4 +6,4 @@ RUN chmod -Rf g+w /home/$NB_USER
 
 ENV HOME /home/$NB_USER
 
-USER 1001:users
+USER 1001:100
