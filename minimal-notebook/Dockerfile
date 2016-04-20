@@ -7,3 +7,9 @@ RUN chgrp -R root /home/$NB_USER && chmod -Rf g+w /home/$NB_USER
 ENV HOME /home/$NB_USER
 
 USER 1001
+
+LABEL io.k8s.description="S2I builder Jupyter (minimal-notebook)." \
+      io.k8s.display-name="Jupyter (minimal-notebook)" \
+      io.openshift.expose-services="8888:http" \
+      io.openshift.tags="builder,python,jupyter" \
+      io.openshift.s2i.scripts-url="image:///usr/local/s2i/bin"
